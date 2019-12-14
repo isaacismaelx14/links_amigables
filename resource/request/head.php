@@ -1,6 +1,8 @@
-<?php $Css =  '"http://' . $host .'/links_amigables/resource/css/bootstrap.min.css"'; 
-$JavaScript =  '"http://' . $host .'/links_amigables/resource/js/bootstrap.min.js"';
-$host= $_SERVER["HTTP_HOST"];     
+<?php 
+$host= $_SERVER["HTTP_HOST"];    
+$Css =  '"http://' . $host .'/links_amigables/resource/css/bootstrap.min.css"'; 
+
+ 
 ?>
 
 <!DOCTYPE html>
