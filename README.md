@@ -5,7 +5,6 @@
 <p>Por ultimo, crearemos una web dinámica para mostrar lo que son nuestras tareas desde el dashboard</p>
 <br>
 <div class="webapp-update">
-    <p>El antiguo web app lo puedes ver <a href="https://github.com/isaacismaelx14/webapp"></a>aquí</p> 
+    <p>El antiguo web app lo puedes ver en este link. https://github.com/isaacismaelx14/ </p>
 </div>
-</form>
 </html>
