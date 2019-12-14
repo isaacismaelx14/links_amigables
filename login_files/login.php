@@ -1,3 +1,4 @@
+<title>Login</title>
 <?php require("resource/request/head.php");?>
 <body>
     <h1>Este es el login</h1>
