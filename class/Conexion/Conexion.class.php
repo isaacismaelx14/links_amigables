@@ -23,5 +23,6 @@ class Concexion extends Mysqli
     }
 }
 
+$conn = new Conexion();
 
 ?>

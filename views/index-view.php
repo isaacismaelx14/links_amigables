@@ -1,5 +1,10 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
 <title>Home</title>
 <?php require("resource/request/head.php");?>
+</head>
+
 <body class="">
     <div class="text-center">
         <h1>Este es el index</h1>
@@ -16,7 +21,7 @@
  }
 </style>
 
-<div class="alert alert-success col-md-8 order-md-5 mb-3 cen  role= alert">
+<div class="alert alert-success col-md-8 order-md-5 mb-3 cen " role="alert">
 <div class="center-block ">
 <h4 class="alert-heading">Well done!</h4>
   <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
