@@ -1,3 +1,3 @@
 <?php
-include 'login_files/login.php';
+require 'login_files/login.php';
 ?>

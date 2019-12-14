@@ -18,11 +18,12 @@ class Concexion extends Mysqli
         parent::__construct($this->host, $this->user, $this->pass, $this->db);
     }
 
-    public setCharset(){
+    public function setCharset(){
         $this->set_charset(CONF_DB_CHARSET);
     }
 }
 
 $conn = new Conexion();
+var_dump($con);
 
 ?>
