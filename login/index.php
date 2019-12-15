@@ -35,7 +35,7 @@ $message_out = $message ? $message->getMessage($_GET['message']) : '';
       <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
      
       <button class="btn btn-lg btn-primary btn-block" name='submit' type="submit">Login</button>
-      <p>*I do no have account <mark> I want to <a href="../signup/">signup</a></mark></p> 
+      <p>*I do no have account I want to <a href="../signup/">signup</a></p> 
       <p class="mt-5 mb-3 text-muted">&copy; 2019-2020</p>
     </form>
 
