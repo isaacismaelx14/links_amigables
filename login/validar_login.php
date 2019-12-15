@@ -19,7 +19,7 @@ if($login->signIn())
 {
      echo 'credenciales validas';
 }else{
-    header('location: index.php?message=El usuario, email o contraseña introducidos no son validos.');
+    header('location: index.php?message=El usuario, email o contraseña introducidos no son validos.&type=ErrorMessage');
 }
 
  ?>
