@@ -1,20 +1,20 @@
 <?php
 
-require '../../config/config.php';
+require '../config/config.php';
 
-class Concexion extends Mysqli
+class Conexion extends Mysqli
 {
     private $host;
     private $user;
     private $pass;
     private $db;
-
+ 
     public function __construct()
     {   
         $this->host = CONF_DB_HOST;
         $this->user = CONF_DB_USER;
         $this->pass = CONF_DB_PASS;
-        $this->db = CONf_DB_DATABASE;
+        $this->db = CONF_DB_DATABASE;
         parent::__construct($this->host, $this->user, $this->pass, $this->db);
     }
 
@@ -24,6 +24,5 @@ class Concexion extends Mysqli
 }
 
 $conn = new Conexion();
-var_dump($con);
 
 ?>
