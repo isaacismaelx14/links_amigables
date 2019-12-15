@@ -7,7 +7,7 @@ spl_autoload_register(function ($class) {
      $user = $_POST['user'] ?? '';
      $password = $_POST['password'] ?? '';
      if(empty($user) or empty($password)){
-        header('location: index.php?message=Error: el ususario o la clave estan vacias'); 
+        header('location: index.php?message=Error: el ususario o la clave estan vacias&type=ErrorMessage'); 
      }
  }
 
