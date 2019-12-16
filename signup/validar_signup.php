@@ -22,22 +22,22 @@ spl_autoload_register(function ($class) {
  $signup->setLastName($lastName);
  $signup->setEmail($email);
    
-if(strcmp($password,$passwordRepeat) === 0){
-     if ($signup->comprobarSiExisteUser() == true) {
-        header('location: signup.php?message=El usuario ('.$user.') no esta disponible. Intenta con otro usuario diferente.&type=ErrorMessage&name='.$name.'&lastname='.$lastName.'&email='.$email);
-    }elseif ($signup->comprobarSiExisteEmail() == true) {
-        header('location: signup.php?message=El email ('.$email.') ya esta asociado a una cuenta.&type=ErrorMessage&name='.$name.'&lastname='.$lastName.'&user='.$user);
-    }else {
-        if($signup->signUp()== true)
-        {
-            header('location: signup.php?message=Tu cuenta ha sido creado satisfactoriamente.&type=SuccessMessage');
-        }else{
-            header('location: signup.php?message=Ha ocurrudo un error al crear el usuario.&type=ErrorMessage');
-        }
-    }
+ if(strcmp($password,$passwordRepeat) === 0){
+    if ($signup->comprobarSiExisteUser() == true) {
+       header('location: signup.php?message=El usuario ('.$user.') no esta disponible. Intenta con otro usuario diferente.&type=ErrorMessage&name='.$name.'&lastname='.$lastName.'&email='.$email);
+   }elseif ($signup->comprobarSiExisteEmail() == true) {
+       header('location: signup.php?message=El email ('.$email.') ya esta asociado a una cuenta.&type=ErrorMessage&name='.$name.'&lastname='.$lastName.'&user='.$user);
+   }else {
+       if($signup->signUp()== true)
+       {
+           header('location: signup.php?message=Tu cuenta ha sido creado satisfactoriamente.&type=SuccessMessage');
+       }else{
+           header('location: signup.php?message=Ha ocurrudo un error al crear el usuario.&type=ErrorMessage');
+       }
+   }
 
 }else{
-    header('location: signup.php?message=Las contraseñas no coinciden&type=ErrorMessage&name='.$name.'&lastname='.$lastName.'&email='.$email.'&user='.$user);
+   header('location: signup.php?message=Las contraseñas no coinciden&type=ErrorMessage&name='.$name.'&lastname='.$lastName.'&email='.$email.'&user='.$user);
 }
 
 

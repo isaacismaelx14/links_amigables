@@ -19,6 +19,7 @@ RewriteEngine on
 RewriteRule ^about/$    about.php [L]
 RewriteRule ^login/$  login/login.php [L]
 RewriteRule ^signup/$  signup/signup.php [L]
+RewriteRule ^dashboard/$  dashboard/dashboard.php [L]
 
 #Carga tu propia página de error 404
 

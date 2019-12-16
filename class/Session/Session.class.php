@@ -26,7 +26,17 @@ class Session
 
     public function isserValue($value)
     {
-        return isset($_SESSION[$value]) ? true:false;   
+        return isset($_SESSION[$value]);   
+    }
+
+    public function validateSession($key)
+    {
+        if(! $this->isserValue($key)){
+            $this->destroSession();
+            return false;
+        }else {
+            return true;
+        }
     }
 
     public function destroSession()

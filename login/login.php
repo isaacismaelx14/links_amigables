@@ -3,6 +3,14 @@
 spl_autoload_register(function ($class) {
   include '../class/Message/' . $class . '.class.php';
 });
+  
+
+include '../class/Session/Session.class.php';
+$session = new Session();
+if($session->validateSession('id')){
+  header('location: ../dashboard');
+}
+ 
 
 $message = isset($_GET['message']) && isset($_GET['type']) ? MessageFactory::
   CreateMessage($_GET['type']) : false;

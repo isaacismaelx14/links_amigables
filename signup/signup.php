@@ -7,10 +7,17 @@ $host= $_SERVER["HTTP_HOST"];
 $Css =  '"http://' . $host .'/links_amigables/resource/css/bootstrap.min.css"'; 
 $CssSignup = '"http://' . $host .'/links_amigables/resource/css/signup/signup_styles.css"'; 
 $js = '"http://' . $host .'/links_amigables/resource/js/signup/form-validation.js"'; 
+$jsValidata = '"http://' . $host .'/links_amigables/resource/js/signup/validata.js"'; 
 spl_autoload_register(function ($class) {
     include '../class/Message/' . $class . '.class.php';
   });
-  
+//verificar si ya se ha iniciado session
+include '../class/Session/Session.class.php';
+$session = new Session();
+if($session->validateSession('id')){
+  header('location: ../dashboard');
+}
+
   $message = isset($_GET['message']) && isset($_GET['type']) ? MessageFactory::
     CreateMessage($_GET['type']) : false;
   
@@ -76,13 +83,13 @@ $user=$_GET['user'] ?? '';
     <div class="row">
           <div class="col-md-6 mb-3 form-group">
             <label for="firstName" >First name</label>
-            <input type="text" name="name" class="form-control" id="firstName" placeholder="John" value=<?php echo('"'.$name.'"'); ?> required>
+            <input type="text" name="name" class="form-control" id="firstName" placeholder="John" value=<?php echo('"'.$name.'"'); ?>onkeypress="return soloLetras2(event)" required>
             <div class="alertNamer">
             </div>
           </div>
           <div class="col-md-6 mb-3 form-group form-check">
             <label for="lastName">Last name</label>
-            <input type="text" name="lastname" class="form-control" id="lastName" placeholder="Newton" value=<?php echo('"'.$lastname.'"'); ?> required>
+            <input type="text" name="lastname" class="form-control" id="lastName" placeholder="Newton" value=<?php echo('"'.$lastname.'"'); ?> onkeypress="return soloLetras2(event)" required>
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
@@ -95,7 +102,7 @@ $user=$_GET['user'] ?? '';
             <div class="input-group-prepend">
               <span class="input-group-text">@</span>
             </div>
-            <input type="user" name="user" class="form-control" id="username" placeholder="Username" value=<?php echo('"'.$name.'"') ?> required>
+            <input type="user" name="user" class="form-control" id="username" placeholder="Username" value=<?php echo('"'.$user.'"') ?> onkeypress="return soloLetras(event)" required>
             <div class="invalid-feedback" style="width: 100%;">
               Your username is required.
             </div>
@@ -104,7 +111,7 @@ $user=$_GET['user'] ?? '';
 
         <div class="mb-3">
           <label for="email">Email <span class="text-muted"></span></label>
-          <input type="email" name="email" class="form-control" id="email" placeholder="you@example.com" value=<?php echo('"'.$email.'"'); ?> required>
+          <input type="email" name="email" class="form-control" id="email" placeholder="you@example.com" value=<?php echo('"'.$email.'"'); ?> onkeypress="return soloLetras3(event)" required>
           <div class="invalid-feedback">
             Please enter a valid e-mail address.
           </div>
@@ -144,5 +151,7 @@ $user=$_GET['user'] ?? '';
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
-        <script src=<?=$js?>></script></body>
+        <script src=<?=$js?>></script>
+        <script src=<?=$jsValidata?>></script>
+    </body>
 </html>

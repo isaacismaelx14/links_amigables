@@ -19,9 +19,9 @@ if($row)
 {
      echo 'credenciales validas';
      $session = new Session();
-     $session->addValue('email', $row['email']);
-     echo $session->getValue('email');
-}else{
+     $session->addValue('id', $row['id']);
+     header('location: ../dashboard');
+    }else{
     header('location: login.php?message=El usuario, email o contraseña introducidos no son validos.&type=ErrorMessage');
 }
 
