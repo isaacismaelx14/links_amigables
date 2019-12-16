@@ -14,10 +14,13 @@ spl_autoload_register(function ($class) {
  $login = new Login(new Conexion);
  $login->setUser($user);
  $login->setPassword($password);
-   
-if($login->signIn())
+ $row =  $login->signIn();  
+if($row)
 {
      echo 'credenciales validas';
+     $session = new Session();
+     $session->addValue('email', $row['email']);
+     echo $session->getValue('email');
 }else{
     header('location: login.php?message=El usuario, email o contraseña introducidos no son validos.&type=ErrorMessage');
 }
