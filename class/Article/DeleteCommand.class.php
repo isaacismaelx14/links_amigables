@@ -1,14 +1,15 @@
 <?php 
 class DeleteCommand  implements iCommand
 {
-    public function __construct(Article $arcticle)
+    protected $article;
+    public function __construct(Article $article)
     {
-        $this->article = $arcticle;
+      $this->article = $article;
     }
-
-    public function exect()
+    public function exec()
     {
-         $this->article->delete();
+      echo '*' . __CLASS__ . '-> exec</br>';
+      return $this->article->delete();
     }
 }
 ?>

@@ -3,31 +3,26 @@
 class Article 
 {
     private $con;
-
-    public function __construct(Conexion $con)  
+    public function __construct(Conexion $con)
     {
-        $this->con = $con;
+      $this->con = $con;
     }
-
     public function select()
     {
-        return 'select';
+      return 'select';
     }
-
     public function insert()
     {
-        return 'insert';
+      return 'insert';
     }
-  
     public function update()
     {
-        return 'update';
+      return 'update';
     }
-
     public function delete()
     {
-        return 'delete';
-    }
+      return 'delete';
+    } 
 }
 
 

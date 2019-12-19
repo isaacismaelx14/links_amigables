@@ -1,44 +1,45 @@
 <?php 
-
-class Crud  
+/**
+* 
+*/
+class Crud
 {
-    protected $insert;
-    protected $select;
-    protected $update;
-    protected $delete;
-
-    public function __construct(
-         InsertCommand $insertC,
-         UpdateCommand $updateC,
-         SelectCommand $selectC,
-         DeleteCommand $deleteC)
-    {
-        $this->insert = $insertC;
-        $this->select = $selectC;
-        $this->update = $updateC;
-        $this->deleete = $deleteC;
-    }
-
-    public function insert()
-    {   
-        $this->insert->exec();
-    }
-
-    public function select()
-    {   
-        $this->select->exec();
-    }
-
-    public function update()
-    {   
-        $this->update->exec();
-    }
-
-    public function delete()
-    {   
-        $this->delete->exec();
-    }
+  protected $insert;
+  protected $select;
+  protected $update;
+  protected $delete;
+  public function __construct(
+    InsertCommand $insertC
+    ,SelectCommand $selectC
+    ,UpdateCommand $updateC
+    ,DeleteCommand $deleteC
+  )
+  {
+    echo 'Iniciando Crud </br></br>';
+    $this->insert = $insertC;
+    $this->select = $selectC;
+    $this->update = $updateC;
+    $this->delete = $deleteC;
+  }
+  public function insert()
+  {
+    echo '** Crud -> insert </br>';
+    return $this->insert->exec();
+  }
+  public function select()
+  {
+    echo '** Crud -> select </br>';
+    return $this->select->exec();
+  }
+  public function update()
+  {
+    echo '** Crud -> update </br>';
+    return $this->update->exec();
+  }
+  public function delete()
+  {
+    echo '** Crud -> delete </br>';
+    return $this->delete->exec();
+  }
 }
-
-
-?> 
+?>

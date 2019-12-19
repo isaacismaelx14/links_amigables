@@ -1,14 +1,15 @@
 <?php 
 class SelectCommand  implements iCommand
 {
-    public function __construct(Article $arcticle)
+    protected $article;
+    public function __construct(Article $article)
     {
-        $this->article = $arcticle;
+      $this->article = $article;
     }
-
-    public function exect()
+    public function exec()
     {
-         $this->article->select();
+      echo '*' . __CLASS__ . '-> exec</br>';
+      return $this->article->select();
     }
 }
 ?>
