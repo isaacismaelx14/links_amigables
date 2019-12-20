@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test Ajax</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Tests</h1>
+    <div id="respuesta"></div>
+    <form action="">
+        <label for="Name">
+            <span>Name</span>
+            <input type="text" id="name" placeholder="Name">
+        </label>
+        <button type="button" id="enviar">Enviar</button>
+    </form>
+    <script>
+
+        $('#enviar').click(function(){
+            var name = document.getElementById('name').value;
+
+            var ruta = "name="+name;
+            $.ajax({
+              url:'bg.php',
+              type:'POST',
+              data: ruta,
+              })
+              .done(function(res){
+                  $('#respuesta').html(res);
+              })
+              .fail(function(){
+                  console.log("error");
+              })
+        });
+      
+      </script>
+</body>
+</html>

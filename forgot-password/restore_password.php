@@ -53,7 +53,7 @@ $id = $_GET['id'] ?? '';
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="../dashboard/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../dashboard/css/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
@@ -78,7 +78,8 @@ $id = $_GET['id'] ?? '';
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
-                    <p class="mb-4">We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!</p>
+                    <p class="mb-4">We get it, these things usually happen, that's why we are prepared to help you. Just enter your email and we will
+                       send you a link to restore your password. In a few moments you will be inside your account again.</p>
                   </div>
                   <?= $message_out?>
                   <form class="user" method="post" action="func_restore.php">
@@ -89,10 +90,10 @@ $id = $_GET['id'] ?? '';
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
+                    <a class="small" href="../register/">Create an Account!</a>
                   </div>
                   <div class="text-center">
-                    <a class="small" href="login.html">Already have an account? Login!</a>
+                    <a class="small" href="../login/">Already have an account? Login!</a>
                   </div>
                 </div>
               </div>

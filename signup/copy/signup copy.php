@@ -17,7 +17,6 @@ $jsDemo =  '"http://' . $host .'/links_amigables/dashboard/js/demo/chart-area-de
 $jsDemoII =  '"http://' . $host .'/links_amigables/dashboard/js/demo/chart-pie-demo.js"'; 
 $jsValidata = '"http://' . $host .'/links_amigables/resource/js/signup/validata.js"';
 $reg = 'http://' . $host .'/links_amigables/register/';
-$login = 'http://' . $host .'/links_amigables/login/';
 
 spl_autoload_register(function ($class) {
     include '../class/Message/' . $class . '.class.php';
@@ -56,22 +55,9 @@ $user=$_GET['user'] ?? '';
   <!-- Custom fonts for this template-->
   <link href=<?= $JsFont?> rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
   <!-- Custom styles for this template-->
   <link href=<?= $CssDashboard?> rel="stylesheet">
-
-  <script type="text/javascript">
-window.onload=function(){
-	Objeto=document.getElementsByTagName(" ");
-	for(a=0;a<Objeto.length;a++){
-		Objeto[a].onclick=function(){
-			location.replace("<?= $reg?>");
-			return false;
-		}
-	}
-}
-</script>
 
 </head>
 
@@ -89,22 +75,21 @@ window.onload=function(){
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                 <?=$message_out?>  
-                <div id="respuesta"></div>
               </div>
-              <form class="user" autocomplete="off" id="form">
+              <form class="user" action="../signup/validar_signup.php" method="post" autocomplete="off">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="text" name="name" class="form-control form-control-user" id="firstName" placeholder="Name" onkeypress="return soloLetras2(event)" required>
+                  <input type="text" name="name" class="form-control form-control-user" id="firstName" placeholder="Name" value=<?php echo('"'.$name.'"'); ?>onkeypress="return soloLetras2(event)" required>
                   </div>
                   <div class="col-sm-6">
-                  <input type="text" name="lastname" class="form-control form-control-user" id="lastName" placeholder="LastName"  required>
+                  <input type="text" name="lastname" class="form-control form-control-user" id="lastName" placeholder="LastName" value=<?php echo('"'.$lastname.'"'); ?> required>
                   </div>
                 </div>
                 <div class="form-group">
-                <input type="user" name="user" class="form-control form-control-user" id="username" placeholder="Username"   onkeypress="return soloLetras(event)" required autocomplete="off">
+                <input type="user" name="user" class="form-control form-control-user" id="username" placeholder="Username"  value=<?php echo('"'.$user.'"') ?> onkeypress="return soloLetras(event)" required autocomplete="off">
                 </div>
                 <div class="form-group">
-                <input type="email" name="email" class="form-control form-control-user" id="email" placeholder="Email"  required>
+                <input type="email" name="email" class="form-control form-control-user" id="email" placeholder="Email" value=<?php echo('"'.$email.'"'); ?> required>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
@@ -114,7 +99,7 @@ window.onload=function(){
                     <input type="password" class="form-control form-control-user" id="repeat_password" name="repeat_password"  placeholder="Confirm Password" required autocomplete="off">
                   </div>
                 </div>
-                <button class="btn btn-primary btn-user btn-block" type="submit" id="enviar" action="signup.php" >Register Account</button>
+                <button class="btn btn-primary btn-user btn-block" type="submit" name="submit" action="signup.php" >Register Account</button>
                 <hr>
               </form>
               <hr>
@@ -144,51 +129,22 @@ window.onload=function(){
 
   <script src=<?=$jsValidata?>></script>
 
-  <script>
-  
-console.log('AJAX Script executed successfuly');
-  $("form").bind("submit", function (){
-    
-    console.log('Enviado');
-      var name = document.getElementById('firstName').value;
-      var lastname = document.getElementById('lastName').value;
-      var user = document.getElementById('username').value;
-      var email = document.getElementById('email').value;
-      var password = document.getElementById('password').value;
-      var ConfirmPassword = document.getElementById('repeat_password').value;
+<script>
 
-      var ruta = "name="+name+"&lastname="+lastname+"&user="+user+"&email="+email+"&password="+password+"&repeat_password="+ConfirmPassword;
-      $.ajax({
-        url:'../signup/validar_signup.php',
-        type:'POST',
-        data: ruta,
-        })
-        .done(function(res){  
-            if(res == "Ok!"){
-               document.location.href='../login/?message=Your account has been successfully created.&type=SuccessMessage';
-                console.log('Acepted');
-             }else{
-                console.log('Error In Validation');
-                 $('#respuesta').html(res);
-              }
-        })
-        .fail(function(){
-            console.log("error");
-        });
-        return false;
-       
+function sendRequest(){
+    var theObject = new XMLHttpRequest();
+    theObject.open('GET', '../signup/validar_signup.php', true);
+    theObject.setRequestHeader('Content-Type','application/x-ww-form-urlencoded');
+    theObject.onreadystatechange = function(){
+    document.getElementById('container').innerHTML = theObject.responseText;
+    }
+    theObject.send();
 
+}
 
-
-  });
-
-  
 
 </script>
  
-
-
-
 </body>
 
 </html>

@@ -22,7 +22,7 @@ if($row)
      $session->addValue('id', $row['id']);
      header('location: ../dashboard');
     }else{
-    header('location: login.php?message=El usuario, email o contraseña introducidos no son validos.&type=ErrorMessage');
+    header('location: ../login/?message=The username/email or password entered are not valid.&type=ErrorMessage');
 }
 
  ?>

@@ -6,5 +6,5 @@
     $session = new Session();
     $session->destroSession();
     header('location: ../login');
-
 ?>
+ <html> <script>location.reload();</script> </html>

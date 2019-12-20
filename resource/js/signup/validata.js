@@ -20,7 +20,7 @@ function soloLetras(e){
  function soloLetras2(e){
     key = e.keyCode || e.which;
     teclado = String.fromCharCode(key).toLowerCase();
-    letras="abcdefghijklmnñoprstuvwxyz";
+    letras="áéíóúabcdefghijklmnñoprstuvwxyz";
     especiales ="8-37-38-95";
     teclado_especial = false;
 
