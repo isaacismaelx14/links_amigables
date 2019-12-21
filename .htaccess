@@ -22,7 +22,7 @@ RewriteRule ^register/$  signup/signup.php [L]
 RewriteRule ^forgot-password/$  forgot-password/restore_password.php [L]
 RewriteRule ^dashboard/$  dashboard/dashboard.php [L]
 RewriteRule ^dashboard/post/$  dashboard/post.php [L]
-
+RewriteRule ^user-validate/$  signup/user_valid.php [L]
 #Carga tu propia página de error 404
 
 

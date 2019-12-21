@@ -1,9 +1,4 @@
 <?php
-$year = date("Y");
-$createdYear = 2003;
-$lastYear = $year - $createdYear;
-$line = $createdYear."-".$year;
-
 $host= $_SERVER["HTTP_HOST"];    
 $Css =  '"http://' . $host .'/links_amigables/resource/css/bootstrap.min.css"'; 
 $CssDashboard =  '"http://' . $host .'/links_amigables/dashboard/css/sb-admin-2.css"'; 
@@ -164,8 +159,8 @@ console.log('AJAX Script executed successfuly');
         data: ruta,
         })
         .done(function(res){  
-            if(res == "Ok!"){
-               document.location.href='../login/?message=Your account has been successfully created.&type=SuccessMessage';
+            if(res === "1"){
+                document.location.href='../user-validate/?message=Your account has been successfully created, but first you have to verify your email.&type=SuccessMessag&email='+email;
                 console.log('Acepted');
              }else{
                 console.log('Error In Validation');

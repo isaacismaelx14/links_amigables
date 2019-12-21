@@ -13,8 +13,8 @@ spl_autoload_register(function ($class) {
      if(empty($user) or empty($password) or empty($email) or empty($passwordRepeat) or empty($lastName) or empty($name)){
         echo('Error:All camps are needes.'.''.$user.' '.$lastName.' '.$email.' '.$password.' '.$user.' '.$passwordRepeat); 
      }
-   
- $signup = new Signup(new Conexion);
+   $con = new Conexion;
+ $signup = new Signup($con);
  $signup->setUser($user);
  $signup->setPassword($password);
  $signup->setName($name);
@@ -55,7 +55,7 @@ if(strcmp($password,$passwordRepeat) != 0 || $signup->comprobarSiExisteUser() ==
 }else{
     if($signup->signUp()== true)
     {
-        echo ('Ok!');
+        echo("1");
     }else{
         echo('<div class="alert-danger" role="alert">
         An error occurred while creating the user. Try again later
