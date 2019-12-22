@@ -45,4 +45,16 @@ class Update
             return false;
          }
     }
+/**
+ * Actualiza un valor de la tabla.
+ */
+    public function updateValueR($table, $colum, $value, $where, $valueWhere):bool
+    {
+        $sql = "UPDATE $table SET $colum = '$value' WHERE $where = '$valueWhere'";
+        if ($this->con->query($sql) === true) {
+            return true;
+         }else{
+            return false;
+         }
+    }
 }

@@ -68,6 +68,13 @@ class Select
                return $value;
            }else {
                return false;
+               echo('<div class="alert alert-danger alert-dismissible fade show" role="alert">
+               Lo sentimos ha ocurrido un error, intento mas tarde.
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>
+              </div>
+              ');
            }  
     }   
     public function consult($table, $where, $value)

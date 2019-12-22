@@ -160,7 +160,7 @@ console.log('AJAX Script executed successfuly');
         })
         .done(function(res){  
             if(res === "1"){
-                document.location.href='../user-validate/?message=Your account has been successfully created, but first you have to verify your email.&type=SuccessMessag&email='+email;
+                document.location.href='../user-validate/?message=Your account has been successfully created, but first you have to verify your email.&type=SuccessMessage&email='+email;
                 console.log('Acepted');
              }else{
                 console.log('Error In Validation');

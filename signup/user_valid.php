@@ -47,10 +47,12 @@ $select = new Select($con);                                         //get de sel
 $select->setEmail($email);
 if($select->checkIsEmail()){
     $id = $select->checkIsEmail()['id'];
+    $name = $select->checkIsEmail()['name'];
     $tabla = 'user_verify';                                       //Tabla Name
     $where = 'user_id';                                           //Column Name
     $comp = new Select($con);  
-    if($comp->comprobarSiExiste($tabla,$where,$id) != true){
+    if($comp->comprobarSiExiste('users','email_verify','1') != false){
+      if($comp->comprobarSiExiste($tabla,$where,$id) != true){
         $insert = new Insert($con);
         $insert->setId($id); 
         $insert->setCode($codigo);
@@ -60,11 +62,15 @@ if($select->checkIsEmail()){
             echo('error'. ' '. $id. ' '. $codigo);
         }
     }else{
-        echo('ya estaba registrado');
+      header("location: ../login/?message=the user is already verify&type=ErrorMessage");
     }
 
+    }else{
+      header("location: ../login/?message=the link isn't correct. Try again&type=ErrorMessage");
+    }
+   
 }else{
-    echo('tu usuario no esta registrado en la base de datos');
+    header("location: ../login/?message=the link isn't correct. Try again&type=ErrorMessage");
 }
 
 //--------------end verify email-------------------------------
@@ -110,6 +116,12 @@ if($select->checkIsEmail()){
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Verify your Email!</h1>
                 <?=$message_out?>  
+                
+                    <style>
+                    .respuesta #respuesta{
+                    color: red;
+                    }
+                    </style>
                 <div class="respuesta"></div>
                 <div id="respuesta"></div>
               </div>
@@ -136,8 +148,6 @@ if($select->checkIsEmail()){
 
   <!-- Custom scripts for all pages-->
   <script src=<?= $jsAdmin?> ></script>
-
-  <script src=<?=$jsValidata?>></script>
 
   <script>
 
@@ -183,7 +193,7 @@ function soloLetras(e){
         })
         .done(function(res){  
             if(res === "1"){
-                document.location.href='../user-validate/?message=Your account has been successfully created, but first you have to verify your email.&type=SuccessMessag&email='+email;
+                document.location.href='../login/?message=Your email has been successfully verify. Welcome <?=$name?>, now you can login.&type=SuccessMessage';
                 console.log('Acepted');
              }else{
                 console.log('Error In Validation');
@@ -195,7 +205,6 @@ function soloLetras(e){
         });
         return false;
   });
-
 </script>
  
 </body>
