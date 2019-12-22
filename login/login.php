@@ -73,16 +73,17 @@ $jsDemoII =  '"http://' . $host .'/links_amigables/dashboard/js/demo/chart-pie-d
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Login</h1>
                   </div>
-                  <form class="user" action="validar_login.php" method="post">
+                  <form class="user">
                    
                    <?php echo $message_out; ?>  
-                    <label for="inputEmail" class="sr-only">User or Email</label>    
-                    <input type="text" id="inputEmail" name="user" class="form-control form-control-user" placeholder="user or email" required autofocus>
+                    <div id="respuesta"></div>
+                    <label for="username" class="sr-only">User or Email</label>    
+                    <input type="text" id="username" name="user" class="form-control form-control-user" placeholder="user or email" required autofocus>
      
-                    <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password" id="inputPassword" name="password" class="form-control form-control-user" placeholder="Password" required>
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" id="password" name="password" class="form-control form-control-user" placeholder="Password" required>
                     </br>
-                    <button class="btn btn-primary btn-user btn-block" name='submit' type="submit">Login</button>
+                    <button class="btn btn-primary btn-user btn-block" type="submit" id="enviar" action="signup.php" >Login</button>
                     <hr>
                     <div class="text-center">
                     <a class="small" href="../forgot-password">Forgot Password?</a>
@@ -111,7 +112,36 @@ $jsDemoII =  '"http://' . $host .'/links_amigables/dashboard/js/demo/chart-pie-d
 
   <!-- Custom scripts for all pages-->
   <script src=<?= $jsAdmin?> ></script>
+  <script>
+  
+console.log('AJAX Script executed successfuly');
+  $("form").bind("submit", function (){
+    
+    console.log('Enviado');
+      var user = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
 
+      var ruta = "user="+user+"&password="+password;
+      $.ajax({
+        url:'../login/validar_login.php',
+        type:'POST',
+        data: ruta,
+        })
+        .done(function(res){  
+            if(res === "1"){
+                document.location.href='../user-validate/?message=Your account has been successfully created, but first you have to verify your email.&type=SuccessMessage&email='+email;
+                console.log('Acepted');
+             }else{
+                console.log('Error In Validation');
+                 $('#respuesta').html(res);
+              }
+        })
+        .fail(function(){
+            console.log("error");
+        });
+        return false;
+  });
+</script>
 
 </body>
 

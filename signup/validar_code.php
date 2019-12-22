@@ -17,7 +17,8 @@ spl_autoload_register(function ($class) {
          if($code_database === $code){
              $update = new Update($con);
              if($update->updateValueR('users','email_verify','1','id',$id)){
-                echo('1');
+              delte = new Delete($con);
+              echo('1');
             }
          }else{
             echo('<div class="alert alert-danger alert-dismissible fade show" role="alert">

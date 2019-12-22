@@ -46,7 +46,7 @@ $user=$_GET['user'] ?? '';
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Register</title>
+  <title>Register</title>
 
   <!-- Custom fonts for this template-->
   <link href=<?= $JsFont?> rel="stylesheet" type="text/css">
@@ -171,14 +171,7 @@ console.log('AJAX Script executed successfuly');
             console.log("error");
         });
         return false;
-       
-
-
-
   });
-
-  
-
 </script>
  
 
