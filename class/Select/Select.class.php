@@ -50,20 +50,26 @@ class Select
      * @param string $table El nombre de la tabla en la cual se quiere hacer la consulta en nuestra base de datos 'SELECT * FROM table_name'
      * @param string $where Recibe el nombre de la columna en la que se quiere realizar la consulta Ejemplo: "WHERE '$colum_id'"
      *  @param string $value Es para indicar cual es el valor que queremos consustar en la base de datos. Ejm: "WHERE colum_id = '$value'" 
-     * 
-     * @return bool Si el valor existe en la base de datos retornara un "true" de lo contrario un "false" o si hubo algun error a la hora de
+     *  @return bool Si el valor existe en la base de datos retornara un "true" de lo contrario un "false" o si hubo algun error a la hora de
      * realizar la consulta.   
      */
     public function comprobarSiExiste($table, $where, $value):bool
-    { 
-            
+    {          
          if($this->consult($table, $where, $value)){  
                 return true;
             }else {
                 return false;
             }  
     }   
-
+    public function comprobarValue($table, $where, $value)
+    { 
+        $value = $this->consult($table, $where, $value);
+        if($value){  
+               return $value;
+           }else {
+               return false;
+           }  
+    }   
     public function consult($table, $where, $value)
     {
         $query = "SELECT * FROM $table WHERE $where = '$value'";

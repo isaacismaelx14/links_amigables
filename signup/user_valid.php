@@ -1,4 +1,8 @@
 <?php
+spl_autoload_register(function ($class) {
+    include '../class/Message/' . $class . '.class.php';
+  });
+
 //------------------------Start Links---------------------------------------------
 
 $host= $_SERVER["HTTP_HOST"];    
@@ -15,10 +19,18 @@ $jsDemoII =  '"http://' . $host .'/links_amigables/dashboard/js/demo/chart-pie-d
 
 //----------------------End Links------------------------------------
 
-spl_autoload_register(function ($class) {
-    include '../class/'. $class. '/' . $class . '.class.php';
-});
+include"../class/Conexion/Conexion.class.php";
+include"../class/Select/Select.class.php";
+include"../class/Insert/Insert.class.php";
 include'../config/functions/codeVerify.func.php';
+
+//Obtener un mensage de error
+    
+$message = isset($_GET['message']) && isset($_GET['type']) ? MessageFactory::
+CreateMessage($_GET['type']) : false;
+$message_out = $message ? $message->getMessage($_GET['message']) : '';
+
+  
 
 //----------------------Start Get Email-------------------------
 $email = $_GET['email'] ?? '';
@@ -57,3 +69,135 @@ if($select->checkIsEmail()){
 
 //--------------end verify email-------------------------------
 ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SB Admin 2 - Register</title>
+
+  <!-- Custom fonts for this template-->
+  <link href=<?= $JsFont?> rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+  <!-- Custom styles for this template-->
+  <link href=<?= $CssDashboard?> rel="stylesheet">
+
+
+
+</head>
+
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Verify your Email!</h1>
+                <?=$message_out?>  
+                <div class="respuesta"></div>
+                <div id="respuesta"></div>
+              </div>
+              <form class="user" autocomplete="off" id="form" name="form">
+                <div class="form-group">
+                <input type="text" name="code" class="form-control form-control-user" id="code"minlength="7" maxlength="7" placeholder="Enter your code..." onkeypress="return soloLetras(event)" required>
+                </div>
+                <button class="btn btn-primary btn-user btn-block" type="submit" id="enviar" action="signup.php" >Verify code</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src=<?= $jsjquery?> ></script>
+  <script src=<?= $jsBootstrap?> ></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src=<?= $jsjqueryII?> ></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src=<?= $jsAdmin?> ></script>
+
+  <script src=<?=$jsValidata?>></script>
+
+  <script>
+
+function soloLetras(e){
+     key = e.keyCode || e.which;
+     teclado = String.fromCharCode(key).toLowerCase();
+     letras="-1234567890";
+     especiales ="8-37-38-95";
+     teclado_especial = false;
+
+        $palabra = document.form.code.value;
+        if($palabra.length == 3){
+            console.log("add -");
+            document.form.code.value += '-';
+        }
+
+     for(var i in especiales){
+         if(key==especiales[i]){
+             teclado_especial = true;
+             console.log('especales');
+             break;
+         }
+
+
+         if(letras.indexOf(teclado)==-1 && !teclado_especial){
+            return false;
+         }
+     }
+ }
+
+ console.log('AJAX Script executed successfuly');
+  $("form").bind("submit", function (){
+    
+    console.log('Enviado');
+      var code = document.getElementById('code').value;
+      var id = "<?=$id?>";
+
+      var ruta = "code="+code+"&id="+id;
+      $.ajax({
+        url:'../signup/validar_code.php',
+        type:'POST',
+        data: ruta,
+        })
+        .done(function(res){  
+            if(res === "1"){
+                document.location.href='../user-validate/?message=Your account has been successfully created, but first you have to verify your email.&type=SuccessMessag&email='+email;
+                console.log('Acepted');
+             }else{
+                console.log('Error In Validation');
+                 $('#respuesta').html(res);
+              }
+        })
+        .fail(function(){
+            console.log("error");
+        });
+        return false;
+  });
+
+</script>
+ 
+</body>
+
+</html>
